@@ -26,16 +26,16 @@ const tx = contactDb.transaction('jate', 'readwrite');
 const store = tx.objectStore('jate');
 
 // Use the .getAll() method to get all data in the database.
-const request = store.add(content);
+const request = store.add({ id: id, contactDb: content });
 
 // Get confirmation of the request.
 const result = await request;
-console.log('result.value', result);
-return result;
+console.log('data saved to the database', result);
+// return result;
 };
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async (id) => {
+export const getDb = async () => {
   
   console.error('GET from the database');
 
@@ -43,7 +43,7 @@ export const getDb = async (id) => {
   const contactDb = await openDB('jate', 1);
 
   // Create a new transaction and specify the database and data privileges.
-  const tx = contactDb.transaction('jate', 'readwrite');
+  const tx = contactDb.transaction('jate', 'readonly');
 
   // Open up the desired object store.
   const store = tx.objectStore('jate');
