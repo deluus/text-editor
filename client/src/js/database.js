@@ -4,11 +4,11 @@ const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
-        console.log('jate database already exists');
+        // console.log('jate database already exists');
         return;
       }
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
-      console.log('jate database created');
+      // console.log('jate database created');
     },
   });
 
@@ -30,7 +30,7 @@ const request = store.put({ id: 1, todo: content });
 
 // Get confirmation of the request.
 const result = await request;
-console.log('data saved to the database', result);
+// console.log('data saved to the database', result);
 // return result;
 };
 
@@ -53,7 +53,7 @@ export const getDb = async () => {
 
   // Get confirmation of the request.
   const result = await request;
-  console.log('result.value', result);
+  // console.log('result.value', result);
   return result?.value;
 };
 
