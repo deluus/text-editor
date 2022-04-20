@@ -26,12 +26,15 @@ const tx = contactDb.transaction('jate', 'readwrite');
 const store = tx.objectStore('jate');
 
 // Use the .getAll() method to get all data in the database.
-const request = store.put({ id: 1, todo: content });
+const request = store.put({ id: 1, value: content });
 
 // Get confirmation of the request.
 const result = await request;
+result 
+  ? console.log('Data Retrieved from database', result.value)
+  : console.log('Data not found in the database')
 // console.log('data saved to the database', result);
-// return result;
+return result?.value;
 };
 
 // TODO: Add logic for a method that gets all the content from the database
